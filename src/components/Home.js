@@ -32,8 +32,9 @@ function Home() {
         </h1>
 
         <h2 style={styles.subheading}>
-          <span style={styles.nameHighlight}>I'm Parmjeet Singh</span>
-          <span style={styles.professionPulse}>Civil Engineer</span>
+          <span style={styles.nameHighlight}>JeetLink Infrastructure Private Limited
+</span>
+          <span style={styles.professionPulse}>Civil Work</span>
         </h2>
 
         <div style={styles.description}>

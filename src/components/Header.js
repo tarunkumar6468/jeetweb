@@ -27,7 +27,8 @@ function Header() {
           className={`floating-logo ${clicked ? "clicked" : ""}`}
           onClick={handleLogoClick}
         />
-        <h1 style={styles.title}>Parmjeet Singh</h1>
+        <h1 style={styles.title}>JeetLink Infrastructure Private Limited
+</h1>
       </div>
       <nav>
         <ul style={styles.navList}>
