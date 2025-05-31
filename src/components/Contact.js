@@ -5,7 +5,7 @@ function Contact() {
   return (
     <section id="contact" style={styles.section}>
       <h2 style={styles.heading}>Contact Me</h2>
-      <p><FaEnvelope /> Email: Parmjitsingh3593@gmail.com</p>
+      <p><FaEnvelope /> Email: Jeetlinkinfrastructure@gmail.com</p>
       <p><FaPhone /> Phone: 9201945430</p>
 
       <div style={styles.iconContainer}>

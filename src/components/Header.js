@@ -44,6 +44,9 @@ function Header() {
           <li style={styles.navItem} onClick={() => scrollToSection("contact")}>
             Contact
           </li>
+          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>
+            who we are
+          </li>
         </ul>
       </nav>
 
