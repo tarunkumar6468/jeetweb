@@ -95,8 +95,8 @@ const styles = {
     alignItems: "center",
   },
   logo: {
-    height: "40px",
-    marginRight: "10px",
+    height: "80px",
+    marginRight: "20px",
   },
   title: {
     fontSize: "1.5rem",

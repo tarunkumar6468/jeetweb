@@ -4,7 +4,7 @@ import { FaWhatsapp, FaInstagram, FaLinkedin, FaEnvelope, FaPhone } from "react-
 function Contact() {
   return (
     <section id="contact" style={styles.section}>
-      <h2 style={styles.heading}>Contact Me</h2>
+      <h2 style={styles.heading}>Contact us</h2>
       <p><FaEnvelope /> Email: Jeetlinkinfrastructure@gmail.com</p>
       <p><FaPhone /> Phone: 9201945430</p>
 
