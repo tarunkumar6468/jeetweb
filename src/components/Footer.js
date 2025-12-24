@@ -20,7 +20,7 @@ function Footer() {
       }}
     >
       <p style={{ margin: 0 }}>
-        &copy; {new Date().getFullYear()} Parmjeet Singh. All rights reserved.
+        &copy; {new Date().getFullYear()} jeetlinkinfra ptivate Limited. All rights reserved.
       </p>
     </footer>
   );

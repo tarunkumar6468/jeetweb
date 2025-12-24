@@ -24,7 +24,7 @@ function About() {
 
       <div style={styles.content}>
         {[
-          "Hey there! I'm Parmjeet Singh, a passionate Civil Engineer transforming visions into concrete reality. With every project, I don't just build structures - I create legacies.",
+          "Hey there! Meet a passionate Civil Engineer transforming visions into concrete reality. With every project, I don't just build structures - I create legacies.",
           "From the first stroke of the blueprint to the final bolt in place, I thrive where precision meets creativity. My work bridges more than rivers - it connects communities.",
           "Specializing in structural innovation and sustainable development, I approach each project with three core principles: integrity, durability, and vision.",
         ].map((text, index) => (
