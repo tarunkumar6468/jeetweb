@@ -1,62 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Projects() {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [visibleItems, setVisibleItems] = useState([]);
 
   const projects = [
     {
       title: "Smart Suspension Bridge Design",
       description: "Advanced modeling and simulation for enhanced structural integrity and safety.",
       emoji: "🌉",
-      category: "Bridges"
+      category: "Bridges",
     },
     {
       title: "Highway Expansion & Development",
       description: "Planning and execution of multi-lane highway systems with sustainable materials.",
       emoji: "🛣️",
-      category: "Roads"
+      category: "Roads",
     },
     {
       title: "Green Building Construction",
       description: "Implementation of eco-friendly materials and energy-efficient architectural designs.",
       emoji: "🏢",
-      category: "Buildings"
+      category: "Buildings",
     },
     {
       title: "Flood Control & Drainage System",
       description: "Designing efficient water management systems to prevent urban flooding.",
       emoji: "🌊",
-      category: "Hydraulic"
+      category: "Hydraulic",
     },
     {
       title: "Urban Infrastructure Renovation",
       description: "Revamping old city infrastructure to meet modern safety and usability standards.",
       emoji: "🚧",
-      category: "Urban"
-    }
+      category: "Urban",
+    },
   ];
 
-  const categories = ["All", ...new Set(projects.map(project => project.category))];
+  const categories = ["All", ...new Set(projects.map((p) => p.category))];
 
-  const filteredProjects = activeFilter === "All" 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
+
+  // Fade-in animation on mount
+  useEffect(() => {
+    let timer = setTimeout(() => setVisibleItems(filteredProjects), 200);
+    return () => clearTimeout(timer);
+  }, [filteredProjects]);
 
   return (
-    <section id="projects" style={styles.container}>
+    <section style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.heading}>Highlighted Civil Engineering Projects</h2>
         <p style={styles.subheading}>Showcasing innovative solutions that shape our infrastructure</p>
-        
+
         <div style={styles.filterContainer}>
-          {categories.map(category => (
+          {categories.map((category) => (
             <button
               key={category}
               style={{
                 ...styles.filterButton,
                 backgroundColor: activeFilter === category ? "#1976d2" : "#e3f2fd",
-                color: activeFilter === category ? "white" : "#1565c0"
+                color: activeFilter === category ? "#fff" : "#1565c0",
               }}
               onClick={() => setActiveFilter(category)}
             >
@@ -66,121 +74,122 @@ function Projects() {
         </div>
       </div>
 
-      <ul style={styles.list}>
-        {filteredProjects.map((project, index) => (
-          <li 
+      <div style={styles.list}>
+        {visibleItems.map((project, index) => (
+          <div
             key={index}
             style={{
               ...styles.item,
-              transform: hoveredItem === index ? "translateY(-5px)" : "none",
-              boxShadow: hoveredItem === index 
-                ? "0 8px 20px rgba(21, 101, 192, 0.25)" 
-                : "0 3px 12px rgba(21, 101, 192, 0.15)"
+              transform: hoveredItem === index ? "translateY(-5px)" : "translateY(0)",
+              boxShadow:
+                hoveredItem === index
+                  ? "0 12px 25px rgba(21,101,192,0.25)"
+                  : "0 3px 12px rgba(21,101,192,0.15)",
+              opacity: visibleItems.includes(project) ? 1 : 0,
+              transition: "all 0.4s ease",
             }}
             onMouseEnter={() => setHoveredItem(index)}
             onMouseLeave={() => setHoveredItem(null)}
           >
             <div style={styles.emoji}>{project.emoji}</div>
-            <div>
+            <div style={styles.projectContent}>
               <h3 style={styles.projectTitle}>{project.title}</h3>
               <p style={styles.projectDescription}>{project.description}</p>
               <span style={styles.projectCategory}>{project.category}</span>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
 
 const styles = {
   container: {
-    backgroundColor: "#e3f2fd",
-    padding: "3rem 2rem",
+    
+    background: "linear-gradient(135deg, #f0f4f8, #d9e2ec)",
+    padding: "4rem 2rem",
     borderRadius: "16px",
-    boxShadow: "0 6px 30px rgba(0, 0, 0, 0.1)",
-    maxWidth: "800px",
+    maxWidth: "1000px",
     margin: "4rem auto",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    transition: "all 0.3s ease",
   },
   header: {
     textAlign: "center",
-    marginBottom: "2.5rem",
+    marginBottom: "3rem",
   },
   heading: {
+    fontSize: "2.3rem",
+    fontWeight: 700,
     color: "#1565c0",
     borderBottom: "4px solid #1976d2",
-    paddingBottom: "0.75rem",
-    marginBottom: "1rem",
-    fontSize: "2.3rem",
-    fontWeight: "700",
     display: "inline-block",
+    paddingBottom: "0.5rem",
+    marginBottom: "0.8rem",
   },
   subheading: {
     color: "#0d47a1",
-    fontSize: "1.1rem",
-    marginTop: "0.5rem",
+    fontSize: "1.05rem",
     fontStyle: "italic",
   },
   filterContainer: {
     display: "flex",
     justifyContent: "center",
-    flexWrap: "wrap",
     gap: "0.8rem",
     marginTop: "2rem",
+    flexWrap: "wrap",
   },
   filterButton: {
     padding: "0.5rem 1.2rem",
     borderRadius: "20px",
     border: "none",
     cursor: "pointer",
-    fontWeight: "600",
-    transition: "all 0.3s ease",
+    fontWeight: 600,
     fontSize: "0.9rem",
+    transition: "all 0.3s ease",
   },
   list: {
-    listStyleType: "none",
-    paddingLeft: "0",
     display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gap: "1.5rem",
   },
   item: {
-    backgroundColor: "#ffffff",
-    padding: "1.5rem 2rem",
+    backgroundColor: "#fff",
     borderRadius: "12px",
-    boxShadow: "0 3px 12px rgba(21, 101, 192, 0.15)",
-    color: "#0d47a1",
+    padding: "1.5rem",
     display: "flex",
     alignItems: "flex-start",
-    gap: "1.5rem",
+    gap: "1rem",
     transition: "all 0.3s ease",
-    cursor: "default",
+    cursor: "pointer",
   },
   emoji: {
     fontSize: "2rem",
     marginTop: "0.3rem",
   },
+  projectContent: {
+    display: "flex",
+    flexDirection: "column",
+  },
   projectTitle: {
     fontSize: "1.25rem",
-    fontWeight: "700",
-    margin: "0 0 0.5rem 0",
+    fontWeight: 700,
+    marginBottom: "0.5rem",
     color: "#1565c0",
   },
   projectDescription: {
-    fontSize: "1.05rem",
-    lineHeight: "1.6",
-    margin: "0 0 0.8rem 0",
+    fontSize: "1rem",
     color: "#2c3e50",
+    marginBottom: "0.6rem",
   },
   projectCategory: {
-    display: "inline-block",
     backgroundColor: "#e3f2fd",
     color: "#1976d2",
     padding: "0.3rem 0.8rem",
     borderRadius: "12px",
     fontSize: "0.85rem",
-    fontWeight: "600",
+    fontWeight: 600,
+    width: "fit-content",
   },
 };
 

@@ -1,84 +1,64 @@
 import React, { useState, useEffect } from "react";
 
 function Home() {
-  const [position, setPosition] = useState(0);
   const [hoveredWord, setHoveredWord] = useState(null);
+  const [gradientAngle, setGradientAngle] = useState(45);
 
+  // Animate gradient slowly
   useEffect(() => {
     const interval = setInterval(() => {
-      setPosition((prev) => (prev >= 20 ? -20 : prev + 1));
-    }, 100);
+      setGradientAngle((prev) => (prev >= 360 ? 0 : prev + 0.2));
+    }, 50);
     return () => clearInterval(interval);
   }, []);
 
-  const descriptionWords =
-    "A passionate Civil Engineer specializing in building bridges, roads, and critical infrastructure. I turn complex designs into strong, functional structures that help connect people and places.".split(
-      " "
-    );
+  const description =
+    "We are JeetLink Infrastructure Pvt Ltd — turning innovative civil engineering designs into strong, lasting infrastructure. From bridges to highways, we connect communities with precision and excellence.";
 
   return (
-    <section id="home" style={styles.home}>
-      <div style={styles.backgroundPattern}></div>
-
-      <div style={styles.contentWrapper}>
-        <h1
-          style={{
-            ...styles.heading,
-            transform: `translateX(${position}px)`,
-            transition: "transform 0.5s ease-out",
-          }}
-        >
-          Welcome!
+    <section
+      id="home"
+      style={{
+        ...styles.home,
+        background: `linear-gradient(${gradientAngle}deg, #4a90e2, #1dd1a1, #ff6b6b)`,
+      }}
+    >
+      <div style={styles.wrapper}>
+        <h1 style={styles.heading}>
+          Welcome to <span style={styles.highlight}>JeetLink!</span>
         </h1>
 
         <h2 style={styles.subheading}>
-          <span style={styles.nameHighlight}>JeetLink Infrastructure Private Limited
-</span>
-          <span style={styles.professionPulse}>Civil Work</span>
+          Civil Engineering | Bridges, Roads & Infrastructure
         </h2>
 
-        <div style={styles.description}>
-          {descriptionWords.map((word, index) => (
+        <p style={styles.description}>
+          {description.split(" ").map((word, i) => (
             <span
-              key={index}
+              key={i}
+              onMouseEnter={() => setHoveredWord(i)}
+              onMouseLeave={() => setHoveredWord(null)}
               style={{
                 ...styles.word,
-                color: hoveredWord === index ? "#ffffff" : "#e0eafc",
-                transform:
-                  hoveredWord === index ? "translateY(-3px)" : "translateY(0)",
-                textShadow:
-                  hoveredWord === index
-                    ? "0 0 8px rgba(255,255,255,0.7)"
-                    : "none",
+                color: hoveredWord === i ? "#ffffff" : "#e0eafc",
+                transform: hoveredWord === i ? "translateY(-2px)" : "translateY(0)",
+                textShadow: hoveredWord === i ? "0 0 6px #ffffff" : "none",
               }}
-              onMouseEnter={() => setHoveredWord(index)}
-              onMouseLeave={() => setHoveredWord(null)}
             >
-              {word}
+              {word}{" "}
             </span>
           ))}
-        </div>
+        </p>
 
-        <div style={styles.quoteContainer}>
-          <p style={styles.quote}>
-            <span style={styles.quoteMark}>“</span>
-            <span style={styles.quoteText}>
-              Engineering isn't just about building — it's about creating
-              impact.
-            </span>
-            <span style={styles.quoteMark}>”</span>
-          </p>
-          <div style={styles.quoteLine}></div>
+        <div style={styles.quote}>
+          “Engineering isn't just building — it's creating impact.”
         </div>
 
         <div style={styles.scrollIndicator}>
           {[0, 1, 2].map((_, i) => (
             <div
               key={i}
-              style={{
-                ...styles.scrollDot,
-                animationDelay: `${i * 0.2}s`,
-              }}
+              style={{ ...styles.scrollDot, animationDelay: `${i * 0.3}s` }}
             />
           ))}
         </div>
@@ -89,134 +69,77 @@ function Home() {
 
 const styles = {
   home: {
-    padding: "5rem 2rem",
-    background: "linear-gradient(135deg, rgba(246, 247, 245, 0), rgba(67, 69, 71, 0.9))",
+    width: "100vw",
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     textAlign: "center",
-    color: "#f0f8ff",
-    borderRadius: "12px",
-    maxWidth: "750px",
-    margin: "3rem auto",
-    boxShadow: "0 12px 30px rgba(0, 0, 0, 0.2)",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    position: "relative",
     overflow: "hidden",
+    transition: "background 0.5s linear",
   },
-  backgroundPattern: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: `
-      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
-    `,
-    backgroundSize: "20px 20px",
-    zIndex: 0,
-    opacity: 0.5,
-  },
-  contentWrapper: {
-    position: "relative",
-    zIndex: 2,
+  wrapper: {
+    maxWidth: "800px",
+    padding: "2rem",
+    borderRadius: "12px",
+    backgroundColor: "rgba(0,0,0,0.2)",
   },
   heading: {
-    fontSize: "4rem",
+    fontSize: "3.5rem",
     fontWeight: 800,
     marginBottom: "1rem",
-    textShadow: "3px 3px 10px rgba(229, 12, 12, 0.3)",
-    letterSpacing: "2px",
+    color: "#fff",
+  },
+  highlight: {
+    color: "#a52323ff",
   },
   subheading: {
-    fontSize: "2rem",
-    fontWeight: 600,
-    marginBottom: "2rem",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "0.5rem",
-  },
-  nameHighlight: {
-    backgroundColor: "rgba(0,0,0,0.1)",
-    padding: "0.5rem 1.5rem",
-    borderRadius: "50px",
-    boxShadow: "inset 0 0 10px rgba(37, 13, 13, 0.2)",
-  },
-  professionPulse: {
-    fontSize: "1.5rem",
+    fontSize: "1.8rem",
     fontWeight: 500,
-    padding: "0.5rem 1rem",
-    borderRadius: "5px",
-    animation: "pulse 2s infinite ease-in-out",
+    marginBottom: "2rem",
+    color: "#e0eafc",
   },
   description: {
-    fontSize: "1.3rem",
-    lineHeight: "1.8",
-    margin: "0 auto 2.5rem",
-    maxWidth: "600px",
+    fontSize: "1.2rem",
+    lineHeight: 1.8,
+    marginBottom: "2rem",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     gap: "4px",
   },
   word: {
+    cursor: "pointer",
     transition: "all 0.3s ease",
-    display: "inline-block",
-    marginRight: "6px",
-  },
-  quoteContainer: {
-    maxWidth: "500px",
-    margin: "0 auto",
-    padding: "1.5rem 0",
   },
   quote: {
     fontStyle: "italic",
-    fontSize: "1.4rem",
-    color: "#ffffff",
-  },
-  quoteMark: {
-    fontSize: "2rem",
-    color: "rgba(255,255,255,0.7)",
-  },
-  quoteText: {
-    padding: "0 0.5rem",
-  },
-  quoteLine: {
-    height: "2px",
-    width: "100px",
-    background: "rgba(22, 1, 1, 0.5)",
-    margin: "1.5rem auto",
-    borderRadius: "2px",
+    fontSize: "1.3rem",
+    color: "#fff",
+    marginBottom: "2rem",
   },
   scrollIndicator: {
     display: "flex",
     justifyContent: "center",
     gap: "0.5rem",
-    marginTop: "3rem",
   },
   scrollDot: {
     width: "10px",
     height: "10px",
     borderRadius: "50%",
-    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    backgroundColor: "rgba(255,255,255,0.6)",
     animation: "bounce 1.5s infinite ease-in-out",
   },
 };
 
-// Insert keyframes (for pulse & bounce animations)
-const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(`
-  @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.8; }
-  }
-`, styleSheet.cssRules.length);
-
-styleSheet.insertRule(`
+// Keyframes for scroll animation
+const sheet = document.styleSheets[0];
+sheet.insertRule(`
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
   }
-`, styleSheet.cssRules.length);
+`, sheet.cssRules.length);
 
 export default Home;

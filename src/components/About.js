@@ -4,107 +4,78 @@ function About() {
   const [hoveredParagraph, setHoveredParagraph] = useState(null);
   const [hoveredSkill, setHoveredSkill] = useState(null);
 
-  const handleParagraphHover = (index) => {
-    setHoveredParagraph(index);
-  };
+  const paragraphs = [
+    "Hey there! Meet a passionate Civil Engineer transforming visions into concrete reality. With every project, I don't just build structures - I create legacies.",
+    "From the first stroke of the blueprint to the final bolt in place, I thrive where precision meets creativity. My work bridges more than rivers - it connects communities.",
+    "Specializing in structural innovation and sustainable development, I approach each project with three core principles: integrity, durability, and vision.",
+  ];
 
-  const handleSkillHover = (index) => {
-    setHoveredSkill(index);
-  };
+  const skills = [
+    { name: "Structural Design", icon: "🏗️" },
+    { name: "Project Management", icon: "📋" },
+    { name: "AutoCAD", icon: "📐" },
+    { name: "Sustainable Materials", icon: "🌱" },
+    { name: "Site Supervision", icon: "👷" },
+    { name: "Cost Estimation", icon: "💰" },
+  ];
 
   return (
     <section id="about" style={styles.about}>
+      {/* Navigation Gap */}
+      <div style={{ height: "80px" }} />
+
+      {/* Header */}
       <div style={styles.headerWrapper}>
         <h2 style={styles.heading}>
-          <span style={styles.headingText}>Building The Future</span>
-          <span style={styles.headingLine} />
+          Building The Future
+          <span style={styles.underline} />
         </h2>
         <p style={styles.subheading}>My Journey in Civil Engineering</p>
       </div>
 
+      {/* Paragraphs */}
       <div style={styles.content}>
-        {[
-          "Hey there! Meet a passionate Civil Engineer transforming visions into concrete reality. With every project, I don't just build structures - I create legacies.",
-          "From the first stroke of the blueprint to the final bolt in place, I thrive where precision meets creativity. My work bridges more than rivers - it connects communities.",
-          "Specializing in structural innovation and sustainable development, I approach each project with three core principles: integrity, durability, and vision.",
-        ].map((text, index) => (
+        {paragraphs.map((text, index) => (
           <div
             key={index}
             style={{
               ...styles.paragraphWrapper,
-              transform: hoveredParagraph === index ? "translateX(10px)" : "translateX(0)",
-              borderLeft: hoveredParagraph === index ? "4px solidrgb(169, 183, 200)" : "4px solid transparent",
+              transform: hoveredParagraph === index ? "scale(1.02)" : "scale(1)",
             }}
-            onMouseEnter={() => handleParagraphHover(index)}
+            onMouseEnter={() => setHoveredParagraph(index)}
             onMouseLeave={() => setHoveredParagraph(null)}
           >
-            <p style={styles.paragraph}>
-              {text.split(/\s/).map((word, wordIndex) => (
-                <React.Fragment key={wordIndex}>
-                  <span
-                    style={{
-                      display: 'inline-block',
-                      transition: `all 0.3s ease ${wordIndex * 0.05}s`,
-                      color: hoveredParagraph === index ? 
-                        (wordIndex % 2 === 0 ? "#4a90e2" : "#2c3e50") : "#2c3e50",
-                      fontWeight: hoveredParagraph === index ? 
-                        (wordIndex % 3 === 0 ? 600 : 400) : 400,
-                    }}
-                  >
-                    {word}
-                  </span>
-                  {' '}
-                </React.Fragment>
-              ))}
-            </p>
+            <p style={styles.paragraph}>{text}</p>
           </div>
         ))}
       </div>
 
+      {/* Skills */}
       <div style={styles.skillsSection}>
         <h3 style={styles.skillsHeading}>My Engineering Toolkit</h3>
         <div style={styles.skillsGrid}>
-          {[
-            "Structural Design",
-            "Project Management",
-            "AutoCAD",
-            "Sustainable Materials",
-            "Site Supervision",
-            "Cost Estimation",
-          ].map((skill, index) => (
+          {skills.map((skill, index) => (
             <div
               key={index}
               style={{
                 ...styles.skillItem,
                 transform: hoveredSkill === index ? "scale(1.05)" : "scale(1)",
-                boxShadow: hoveredSkill === index ? 
-                  "0 5px 15px rgba(74, 144, 226, 0.3)" : 
-                  "0 2px 8px rgba(0,0,0,0.05)",
               }}
-              onMouseEnter={() => handleSkillHover(index)}
+              onMouseEnter={() => setHoveredSkill(index)}
               onMouseLeave={() => setHoveredSkill(null)}
-              aria-label={skill}
             >
-              <div style={{
-                ...styles.skillIcon,
-                backgroundColor: hoveredSkill === index ? "#e8f2ff" : "transparent",
-                transform: hoveredSkill === index ? "rotate(5deg)" : "rotate(0)"
-              }} aria-hidden="true">
-                {index % 2 === 0 ? "🏗️" : "📐"}
-              </div>
-              <span style={{
-                fontWeight: hoveredSkill === index ? 600 : 400,
-                color: hoveredSkill === index ? "#4a90e2" : "#2c3e50"
-              }}>{skill}</span>
+              <span style={styles.skillIcon}>{skill.icon}</span>
+              <span style={styles.skillName}>{skill.name}</span>
             </div>
           ))}
         </div>
       </div>
 
+      {/* Quote */}
       <div style={styles.quoteContainer}>
         <p style={styles.quote}>
           "We shape our buildings; thereafter they shape us."
-          <span style={styles.quoteAuthor}>- Winston Churchill</span>
+          <span style={styles.quoteAuthor}>----------------------------</span>
         </p>
       </div>
     </section>
@@ -113,18 +84,14 @@ function About() {
 
 const styles = {
   about: {
-    maxWidth: "800px",
-    margin: "4rem auto",
-    padding: "3rem 4rem",
-    backgroundColor: "#ffffff",
-    borderRadius: "18px",
-    boxShadow: "0 12px 35px rgba(0, 0, 0, 0.1)",
-    color: "#2c3e50",
+    width: "100%",
+    minHeight: "100vh",
+    padding: "2rem",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    position: "relative",
-    overflow: "hidden",
-    transition: "all 0.4s ease",
-    lineHeight: 1.7,
+    backgroundColor: "#f9f9f9",
   },
   headerWrapper: {
     textAlign: "center",
@@ -132,113 +99,109 @@ const styles = {
     position: "relative",
   },
   heading: {
-    fontSize: "2.8rem",
-    fontWeight: 800,
-    color: "#30475e",
-    marginBottom: "0.5rem",
+    fontSize: "2.5rem",
+    fontWeight: 700,
+    color: "#333",
     position: "relative",
     display: "inline-block",
   },
-  headingText: {
-    position: "relative",
-    zIndex: 2,
-    background: "linear-gradient(135deg, #4a90e2 0%, #30475e 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-  },
-  headingLine: {
+  underline: {
     position: "absolute",
-    bottom: "8px",
-    left: 0,
-    width: "100%",
-    height: "15px",
-    background: "rgba(74, 144, 226, 0.2)",
-    zIndex: 1,
-    borderRadius: "10px",
-    transform: "skewX(-15deg)",
+    bottom: "-5px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "80px",
+    height: "4px",
+    borderRadius: "2px",
+    background: "linear-gradient(90deg, #4a90e2, #1976d2)",
+    animation: "slideUnderline 1.5s infinite alternate",
   },
   subheading: {
-    fontSize: "1.3rem",
-    color: "#6b7c93",
+    fontSize: "1.1rem",
+    color: "#666",
     fontStyle: "italic",
-    marginTop: "1rem",
-    fontWeight: 500,
+    marginTop: "0.5rem",
   },
   content: {
-    margin: "2.5rem 0",
+    width: "80%",
+    marginBottom: "3rem",
   },
   paragraphWrapper: {
-    marginBottom: "2rem",
-    paddingLeft: "1.5rem",
-    transition: "all 0.3s ease",
+    marginBottom: "1.8rem",
+    padding: "1rem",
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+    transition: "transform 0.3s ease",
   },
   paragraph: {
-    fontSize: "1.2rem",
-    lineHeight: 1.9,
-    margin: 0,
-    cursor: "default",
+    fontSize: "1.1rem",
+    lineHeight: 1.7,
+    color: "#444",
   },
   skillsSection: {
-    margin: "4rem 0",
-    padding: "2rem",
-    backgroundColor: "#f8faff",
-    borderRadius: "12px",
-    border: "1px solid #e0e9ff",
+    width: "80%",
+    marginBottom: "3rem",
   },
   skillsHeading: {
+    fontSize: "1.4rem",
+    fontWeight: 600,
     textAlign: "center",
     color: "#4a90e2",
-    marginBottom: "2rem",
-    fontSize: "1.5rem",
-    fontWeight: 700,
-    letterSpacing: "0.5px",
+    marginBottom: "1.5rem",
   },
   skillsGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-    gap: "1.2rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: "1rem",
   },
   skillItem: {
     display: "flex",
     alignItems: "center",
-    gap: "1rem",
-    padding: "1rem 1.2rem",
-    backgroundColor: "white",
-    borderRadius: "10px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-    transition: "all 0.3s ease",
-    cursor: "default",
+    gap: "0.8rem",
+    padding: "0.8rem 1rem",
+    borderRadius: "8px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    transition: "transform 0.3s ease",
   },
   skillIcon: {
-    fontSize: "1.5rem",
-    padding: "0.5rem",
-    borderRadius: "8px",
-    transition: "all 0.3s ease",
+    fontSize: "1.3rem",
+  },
+  skillName: {
+    color: "#333",
+    fontWeight: 500,
   },
   quoteContainer: {
-    marginTop: "4rem",
-    padding: "2rem",
-    backgroundColor: "#4a90e2",
-    borderRadius: "12px",
-    color: "white",
+    width: "80%",
+    padding: "1.8rem",
+    background: "linear-gradient(135deg, #4a90e2, #1976d2)",
+    borderRadius: "10px",
     textAlign: "center",
-    transform: "rotate(-1deg)",
-    boxShadow: "0 5px 20px rgba(74, 144, 226, 0.3)",
+    color: "#fff",
+    boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
   },
   quote: {
-    fontSize: "1.4rem",
+    fontSize: "1.2rem",
     fontStyle: "italic",
-    fontWeight: 500,
     margin: 0,
-    lineHeight: 1.7,
   },
   quoteAuthor: {
     display: "block",
-    marginTop: "1rem",
-    fontSize: "1.1rem",
-    fontWeight: 400,
+    marginTop: "0.8rem",
+    fontSize: "1rem",
     opacity: 0.9,
   },
 };
+
+// Keyframes animation
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+  @keyframes slideUnderline {
+    0% { transform: translateX(-50%) scaleX(0.5); opacity: 0.6; }
+    50% { transform: translateX(-50%) scaleX(1.1); opacity: 1; }
+    100% { transform: translateX(-50%) scaleX(0.8); opacity: 0.8; }
+  }
+`, styleSheet.cssRules.length);
 
 export default About;

@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.jpg";
 
 function Header() {
   const [clicked, setClicked] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -18,7 +32,12 @@ function Header() {
   };
 
   return (
-    <header style={styles.header}>
+    <header
+      style={{
+        ...styles.header,
+        ...(scrolled ? styles.headerScrolled : {}),
+      }}
+    >
       <div style={styles.logoContainer}>
         <img
           src={logo}
@@ -76,37 +95,48 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#f3f3f3ff", // MAROON
-    
     padding: "10px 20px",
     color: "#800000",
+
+    position: "sticky",
+    top: 0,
+    zIndex: 1000,
+
+    backgroundColor: "transparent",   // initial
+    transform: "translateY(-100%)",   // hidden at first
+    transition: "all 0.4s ease",
   },
+
+  headerScrolled: {
+    backgroundColor: "#fffefeff",     // visible on scroll
+    transform: "translateY(0)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+  },
+
   logoContainer: {
     display: "flex",
     alignItems: "center",
   },
-  logo: {
-    height: "80px",
-    marginRight: "20px",
-  },
+
   title: {
     fontSize: "1.5rem",
     fontWeight: "bold",
   },
+
   navList: {
-  display: "flex",
-  listStyle: "none",
-  gap: "20px",
-  margin: 0,
-  padding: "10px 20px",      // ADD padding
-   backgroundColor: "#051638ff", // ← CHANGE COLOR HERE (maroon)
-  borderRadius: "6px",       // optional (looks better)
-},
+    display: "flex",
+    listStyle: "none",
+    gap: "20px",
+    margin: 0,
+    padding: "10px 20px",
+    backgroundColor: "#051638ff",
+    borderRadius: "6px",
+  },
+
   navItem: {
     cursor: "pointer",
     color: "#e9e8e8ff",
     fontWeight: "500",
-  
   },
 };
 
