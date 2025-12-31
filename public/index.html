@@ -22,24 +22,31 @@
 
       /* Background image on body */
       body {
-        background-image: url('./background.webp');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        color: white; /* white text on dark bg */
-      }
+  margin: 0;
+  min-height: 100vh;
+  position: relative;              /* important */
+  background-image: url('./background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white; /* white text on dark bg */
+}
 
-      /* Optional overlay with a pseudo-element */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.4); /* dark transparent overlay */
-        z-index: -1;
+/* Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;                        /* replaces top/left/right/bottom */
+  background-color: rgba(0, 0, 0, 0.8); /* adjust opacity */
+  z-index: 0;
+}
+
+/* Keep content above overlay */
+body > * {
+  position: relative;
+  z-index: 1;
+
       }
 
       /* Make sure the app root is full height */

@@ -14,7 +14,7 @@ function Header() {
   const handleLogoClick = () => {
     setClicked(true);
     scrollToSection("home");
-    setTimeout(() => setClicked(false), 300); // Reset after animation
+    setTimeout(() => setClicked(false), 300);
   };
 
   return (
@@ -23,34 +23,24 @@ function Header() {
         <img
           src={logo}
           alt="Logo"
-          style={styles.logo}
           className={`floating-logo ${clicked ? "clicked" : ""}`}
           onClick={handleLogoClick}
         />
-        <h1 style={styles.title}>JeetLink Infrastructure Private Limited
-</h1>
+        <h1 style={styles.title}>
+          JeetLink Infrastructure Private Limited
+        </h1>
       </div>
+
       <nav>
         <ul style={styles.navList}>
-          <li style={styles.navItem} onClick={() => scrollToSection("home")}>
-            Home
-          </li>
-          <li style={styles.navItem} onClick={() => scrollToSection("about")}>
-            About
-          </li>
-          <li style={styles.navItem} onClick={() => scrollToSection("projects")}>
-            Projects
-          </li>
-          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>
-            Contact
-          </li>
-          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>
-            who we are
-          </li>
+          <li style={styles.navItem} onClick={() => scrollToSection("home")}>Home</li>
+          <li style={styles.navItem} onClick={() => scrollToSection("about")}>About</li>
+          <li style={styles.navItem} onClick={() => scrollToSection("projects")}>Projects</li>
+          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>Contact</li>
+          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>Who We Are</li>
         </ul>
       </nav>
 
-      {/* Style: floating + hover/click round and scale */}
       <style>{`
         .floating-logo {
           height: 40px;
@@ -86,9 +76,10 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#282c34",
+    backgroundColor: "#f3f3f3ff", // MAROON
+    
     padding: "10px 20px",
-    color: "white",
+    color: "#800000",
   },
   logoContainer: {
     display: "flex",
@@ -103,14 +94,19 @@ const styles = {
     fontWeight: "bold",
   },
   navList: {
-    display: "flex",
-    listStyle: "none",
-    gap: "20px",
-    margin: 0,
-    padding: 0,
-  },
+  display: "flex",
+  listStyle: "none",
+  gap: "20px",
+  margin: 0,
+  padding: "10px 20px",      // ADD padding
+   backgroundColor: "#051638ff", // ← CHANGE COLOR HERE (maroon)
+  borderRadius: "6px",       // optional (looks better)
+},
   navItem: {
     cursor: "pointer",
+    color: "#e9e8e8ff",
+    fontWeight: "500",
+  
   },
 };
 
