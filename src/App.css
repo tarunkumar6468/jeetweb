@@ -7,8 +7,8 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background-color: #282c34;
-  color: white;
+  background-color: transparent;
+  color: rgb(104, 24, 24);
 }
 nav ul {
   display: flex;

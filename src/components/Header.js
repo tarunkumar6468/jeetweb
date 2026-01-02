@@ -57,7 +57,7 @@ function Header() {
           <li style={styles.navItem} onClick={() => scrollToSection("projects")}>Projects</li>
           <li style={styles.navItem} onClick={() => scrollToSection("contact")}>Contact</li>
           <li style={styles.navItem} onClick={() => scrollToSection("contact")}>Who We Are</li>
-        </ul>
+        </ul>   
       </nav>
 
       <style>{`
@@ -103,14 +103,14 @@ const styles = {
     zIndex: 1000,
 
     backgroundColor: "transparent",   // initial
-    transform: "translateY(-100%)",   // hidden at first
+    // transform: "translateY(-100%)",   // hidden at first
     transition: "all 0.4s ease",
   },
 
   headerScrolled: {
-    backgroundColor: "#fffefeff",     // visible on scroll
+    backgroundColor: "#ffffffff",     // visible on scroll
     transform: "translateY(0)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    boxShadow: "0 4px 12px rgba(25, 14, 65, 0.97)",
   },
 
   logoContainer: {
@@ -129,15 +129,16 @@ const styles = {
     gap: "20px",
     margin: 0,
     padding: "10px 20px",
-    backgroundColor: "#051638ff",
+    backgroundColor: "",
     borderRadius: "6px",
   },
 
   navItem: {
     cursor: "pointer",
-    color: "#e9e8e8ff",
+    color: "#800000",
     fontWeight: "500",
   },
 };
 
 export default Header;
+  

@@ -25,7 +25,7 @@ function Home() {
     >
       <div style={styles.wrapper}>
         <h1 style={styles.heading}>
-          Welcome to <span style={styles.highlight}>JeetLink!</span>
+          Welcome to <span style={styles.highlight}>JeetLink</span>
         </h1>
 
         <h2 style={styles.subheading}>
