@@ -65,11 +65,11 @@ function Header() {
           <li onClick={() => scrollToSection("about")}>About</li>
           <li onClick={() => scrollToSection("projects")}>Projects</li>
           <li onClick={() => scrollToSection("contact")}>Contact</li>
-          <li onClick={() => scrollToSection("contact")}>Who We Are</li>
+          <li onClick={() => scrollToSection("about")}>Who We Are</li>
         </ul>
       </nav>
 
-      {/* Animations */}
+      {/* Animations and Media Queries */}
       <style>{`
         .floating-logo {
           height: 40px;
@@ -86,6 +86,16 @@ function Header() {
           50% { transform: translateY(-5px); }
           100% { transform: translateY(0); }
         }
+
+        @media (max-width: 768px) {
+          header {
+            padding: 10px 15px !important;
+          }
+          nav ul {
+            flex-direction: column;
+            padding: 15px;
+          }
+        }
       `}</style>
     </header>
   );
@@ -99,8 +109,11 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: "10px 20px",
+    margin: 0,
     position: "sticky",
     top: 0,
+    left: 0,
+    right: 0,
     zIndex: 1000,
     backgroundColor: "transparent",
     transition: "all 0.4s ease",
@@ -152,15 +165,5 @@ const styles = {
     color: "#800000",
   },
 };
-
-/* MEDIA QUERY */
-const mediaStyles = `
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    padding: 15px;
-  }
-}
-`;
 
 export default Header;
