@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 function Home() {
-  const [hoveredWord, setHoveredWord] = useState(null);
+  const [activeWord, setActiveWord] = useState(null);
 
   const description =
     "We are JeetLink Infrastructure Pvt Ltd — turning innovative civil engineering designs into strong, lasting infrastructure. From bridges to highways, we connect communities with precision and excellence.";
 
   return (
-    <section id="home" style={styles.home}>
+    <section style={styles.home}>
       <div style={styles.wrapper}>
         <h1 style={styles.heading}>
-          Welcome to <span style={styles.highlight}>JeetLink</span>
+          JeetLink Infrastructure <span style={styles.highlight}> </span>
         </h1>
 
         <h2 style={styles.subheading}>
@@ -21,12 +21,11 @@ function Home() {
           {description.split(" ").map((word, i) => (
             <span
               key={i}
-              onMouseEnter={() => setHoveredWord(i)}
-              onMouseLeave={() => setHoveredWord(null)}
+              onClick={() => setActiveWord(i)}
               style={{
                 ...styles.word,
-                color: hoveredWord === i ? "#000" : "#444",
-                textDecoration: hoveredWord === i ? "underline" : "none",
+                color: activeWord === i ? "#000" : "#444",
+                textDecoration: activeWord === i ? "underline" : "none",
               }}
             >
               {word}{" "}
@@ -44,8 +43,9 @@ function Home() {
 
 const styles = {
   home: {
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    minHeight: "100vh", // FIXED
+    padding: "1rem",
     backgroundColor: "#ffffff",
     display: "flex",
     justifyContent: "center",
@@ -55,27 +55,27 @@ const styles = {
   },
   wrapper: {
     maxWidth: "800px",
-    padding: "2rem",
+    padding: "1rem",
   },
   heading: {
-    fontSize: "3.2rem",
+    fontSize: "clamp(2rem, 5vw, 3.2rem)", // RESPONSIVE
     fontWeight: 800,
-    marginBottom: "1rem",
+    marginBottom: "0.8rem",
     color: "#000",
   },
   highlight: {
     color: "#000",
   },
   subheading: {
-    fontSize: "1.6rem",
+    fontSize: "clamp(1.1rem, 3vw, 1.6rem)", // RESPONSIVE
     fontWeight: 500,
-    marginBottom: "2rem",
+    marginBottom: "1.5rem",
     color: "#333",
   },
   description: {
-    fontSize: "1.15rem",
-    lineHeight: 1.8,
-    marginBottom: "2rem",
+    fontSize: "clamp(1rem, 2.5vw, 1.15rem)", // RESPONSIVE
+    lineHeight: 1.7,
+    marginBottom: "1.5rem",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -84,11 +84,11 @@ const styles = {
   },
   word: {
     cursor: "pointer",
-    transition: "color 0.2s ease",
+    transition: "all 0.2s ease",
   },
   quote: {
     fontStyle: "italic",
-    fontSize: "1.2rem",
+    fontSize: "clamp(1rem, 3vw, 1.2rem)", // RESPONSIVE
     color: "#555",
   },
 };
