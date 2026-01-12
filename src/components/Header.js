@@ -4,16 +4,12 @@ import logo from "../assets/logo.jpg";
 function Header() {
   const [clicked, setClicked] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -22,6 +18,7 @@ function Header() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      setMenuOpen(false); // close menu on click
     }
   };
 
@@ -45,21 +42,34 @@ function Header() {
           className={`floating-logo ${clicked ? "clicked" : ""}`}
           onClick={handleLogoClick}
         />
-        <h1 style={styles.title}>
-          JeetLink Infrastructure Private Limited
-        </h1>
+        <h1 style={styles.title}>JeetLink Infrastructure Private Limited</h1>
       </div>
 
-      <nav>
+      {/* Hamburger */}
+      <div
+        style={styles.hamburger}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
+      </div>
+
+      {/* Navigation */}
+      <nav
+        style={{
+          ...styles.nav,
+          ...(menuOpen ? styles.navOpen : {}),
+        }}
+      >
         <ul style={styles.navList}>
-          <li style={styles.navItem} onClick={() => scrollToSection("home")}>Home</li>
-          <li style={styles.navItem} onClick={() => scrollToSection("about")}>About</li>
-          <li style={styles.navItem} onClick={() => scrollToSection("projects")}>Projects</li>
-          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>Contact</li>
-          <li style={styles.navItem} onClick={() => scrollToSection("contact")}>Who We Are</li>
-        </ul>   
+          <li onClick={() => scrollToSection("home")}>Home</li>
+          <li onClick={() => scrollToSection("about")}>About</li>
+          <li onClick={() => scrollToSection("projects")}>Projects</li>
+          <li onClick={() => scrollToSection("contact")}>Contact</li>
+          <li onClick={() => scrollToSection("contact")}>Who We Are</li>
+        </ul>
       </nav>
 
+      {/* Animations */}
       <style>{`
         .floating-logo {
           height: 40px;
@@ -69,17 +79,8 @@ function Header() {
           animation: float 3s ease-in-out infinite;
           cursor: pointer;
         }
-
-        .floating-logo:hover {
-          transform: scale(1.2);
-          border-radius: 50%;
-        }
-
-        .clicked {
-          transform: scale(1.3);
-          border-radius: 50%;
-        }
-
+        .floating-logo:hover { transform: scale(1.2); border-radius: 50%; }
+        .clicked { transform: scale(1.3); border-radius: 50%; }
         @keyframes float {
           0% { transform: translateY(0); }
           50% { transform: translateY(-5px); }
@@ -92,24 +93,21 @@ function Header() {
 
 const styles = {
   header: {
+    width: "100%",
+    boxSizing: "border-box",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "10px 20px",
-    color: "#800000",
-
     position: "sticky",
     top: 0,
     zIndex: 1000,
-
-    backgroundColor: "transparent",   // initial
-    // transform: "translateY(-100%)",   // hidden at first
+    backgroundColor: "transparent",
     transition: "all 0.4s ease",
   },
 
   headerScrolled: {
-    backgroundColor: "#ffffffff",     // visible on scroll
-    transform: "translateY(0)",
+    backgroundColor: "#ffffffff",
     boxShadow: "0 4px 12px rgba(25, 14, 65, 0.97)",
   },
 
@@ -119,8 +117,30 @@ const styles = {
   },
 
   title: {
-    fontSize: "1.5rem",
+    fontSize: "1.2rem",
     fontWeight: "bold",
+    color: "#800000",
+  },
+
+  hamburger: {
+    display: "none",
+    fontSize: "1.8rem",
+    cursor: "pointer",
+    color: "#800000",
+  },
+
+  nav: {
+    display: "flex",
+  },
+
+  navOpen: {
+    display: "block",
+    position: "absolute",
+    top: "60px",
+    right: "20px",
+    backgroundColor: "#ffffff",
+    boxShadow: "0 4px 12px rgba(25, 14, 65, 0.97)",
+    borderRadius: "8px",
   },
 
   navList: {
@@ -128,17 +148,19 @@ const styles = {
     listStyle: "none",
     gap: "20px",
     margin: 0,
-    padding: "10px 20px",
-    backgroundColor: "",
-    borderRadius: "6px",
-  },
-
-  navItem: {
-    cursor: "pointer",
+    padding: 0,
     color: "#800000",
-    fontWeight: "500",
   },
 };
 
+/* MEDIA QUERY */
+const mediaStyles = `
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    padding: 15px;
+  }
+}
+`;
+
 export default Header;
-  
