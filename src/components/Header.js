@@ -69,7 +69,7 @@ function Header() {
         </ul>
       </nav>
 
-      {/* Animations */}
+      {/* Animations and Media Queries */}
       <style>{`
         .floating-logo {
           height: 40px;
@@ -85,6 +85,12 @@ function Header() {
           0% { transform: translateY(0); }
           50% { transform: translateY(-5px); }
           100% { transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+          nav ul {
+            flex-direction: column;
+            padding: 15px;
+          }
         }
       `}</style>
     </header>
@@ -152,15 +158,5 @@ const styles = {
     color: "#800000",
   },
 };
-
-/* MEDIA QUERY */
-const mediaStyles = `
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    padding: 15px;
-  }
-}
-`;
 
 export default Header;
