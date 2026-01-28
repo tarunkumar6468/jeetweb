@@ -18,18 +18,19 @@ function Home() {
         </h2>
 
         <p style={styles.description}>
-          {description.split(" ").map((word, i) => (
+          {description.split(" ").map((word, index) => (
             <span
-              key={i}
-              onMouseEnter={() => setHoveredWord(i)}
+              key={index}
+              onMouseEnter={() => setHoveredWord(index)}
               onMouseLeave={() => setHoveredWord(null)}
               style={{
                 ...styles.word,
-                color: hoveredWord === i ? "#000" : "#444",
-                textDecoration: hoveredWord === i ? "underline" : "none",
+                color: hoveredWord === index ? "#000" : "#444",
+                textDecoration:
+                  hoveredWord === index ? "underline" : "none",
               }}
             >
-              {word}{" "}
+              {word}&nbsp;
             </span>
           ))}
         </p>
@@ -44,8 +45,8 @@ function Home() {
 
 const styles = {
   home: {
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    minHeight: "100vh",
     backgroundColor: "#ffffff",
     display: "flex",
     justifyContent: "center",
@@ -54,11 +55,11 @@ const styles = {
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   wrapper: {
-    maxWidth: "800px",
+    maxWidth: "900px",
     padding: "2rem",
   },
   heading: {
-    fontSize: "3.2rem",
+    fontSize: "3rem",
     fontWeight: 800,
     marginBottom: "1rem",
     color: "#000",
@@ -67,7 +68,7 @@ const styles = {
     color: "#000",
   },
   subheading: {
-    fontSize: "1.6rem",
+    fontSize: "1.5rem",
     fontWeight: 500,
     marginBottom: "2rem",
     color: "#333",
@@ -84,7 +85,7 @@ const styles = {
   },
   word: {
     cursor: "pointer",
-    transition: "color 0.2s ease",
+    transition: "color 0.2s ease, text-decoration 0.2s ease",
   },
   quote: {
     fontStyle: "italic",

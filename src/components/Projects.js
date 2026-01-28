@@ -8,31 +8,36 @@ function Projects() {
   const projects = [
     {
       title: "Smart Suspension Bridge Design",
-      description: "Advanced modeling and simulation for enhanced structural integrity and safety.",
+      description:
+        "Advanced modeling and simulation for enhanced structural integrity and safety.",
       emoji: "🌉",
       category: "Bridges",
     },
     {
       title: "Highway Expansion & Development",
-      description: "Planning and execution of multi-lane highway systems with sustainable materials.",
+      description:
+        "Planning and execution of multi-lane highway systems with sustainable materials.",
       emoji: "🛣️",
       category: "Roads",
     },
     {
       title: "Green Building Construction",
-      description: "Implementation of eco-friendly materials and energy-efficient architectural designs.",
+      description:
+        "Implementation of eco-friendly materials and energy-efficient architectural designs.",
       emoji: "🏢",
       category: "Buildings",
     },
     {
       title: "Flood Control & Drainage System",
-      description: "Designing efficient water management systems to prevent urban flooding.",
+      description:
+        "Designing efficient water management systems to prevent urban flooding.",
       emoji: "🌊",
       category: "Hydraulic",
     },
     {
       title: "Urban Infrastructure Renovation",
-      description: "Revamping old city infrastructure to meet modern safety and usability standards.",
+      description:
+        "Revamping old city infrastructure to meet modern safety and usability standards.",
       emoji: "🚧",
       category: "Urban",
     },
@@ -45,17 +50,18 @@ function Projects() {
       ? projects
       : projects.filter((p) => p.category === activeFilter);
 
-  // Fade-in animation on mount
+  // 🔥 FIXED: no empty state, no delete feeling
   useEffect(() => {
-    let timer = setTimeout(() => setVisibleItems(filteredProjects), 200);
-    return () => clearTimeout(timer);
+    setVisibleItems(filteredProjects);
   }, [filteredProjects]);
 
   return (
-    <section style={styles.container}>
+    <section id="projects" style={styles.container}>
       <div style={styles.header}>
         <h2 style={styles.heading}>Highlighted Civil Engineering Projects</h2>
-        <p style={styles.subheading}>Showcasing innovative solutions that shape our infrastructure</p>
+        <p style={styles.subheading}>
+          Showcasing innovative solutions that shape our infrastructure
+        </p>
 
         <div style={styles.filterContainer}>
           {categories.map((category) => (
@@ -63,8 +69,10 @@ function Projects() {
               key={category}
               style={{
                 ...styles.filterButton,
-                backgroundColor: activeFilter === category ? "#1976d2" : "#e3f2fd",
-                color: activeFilter === category ? "#fff" : "#1565c0",
+                backgroundColor:
+                  activeFilter === category ? "#1976d2" : "#e3f2fd",
+                color:
+                  activeFilter === category ? "#fff" : "#1565c0",
               }}
               onClick={() => setActiveFilter(category)}
             >
@@ -80,13 +88,14 @@ function Projects() {
             key={index}
             style={{
               ...styles.item,
-              transform: hoveredItem === index ? "translateY(-5px)" : "translateY(0)",
+              transform:
+                hoveredItem === index
+                  ? "translateY(-6px)"
+                  : "translateY(0)",
               boxShadow:
                 hoveredItem === index
                   ? "0 12px 25px rgba(21,101,192,0.25)"
                   : "0 3px 12px rgba(21,101,192,0.15)",
-              opacity: visibleItems.includes(project) ? 1 : 0,
-              transition: "all 0.4s ease",
             }}
             onMouseEnter={() => setHoveredItem(index)}
             onMouseLeave={() => setHoveredItem(null)}
@@ -94,8 +103,12 @@ function Projects() {
             <div style={styles.emoji}>{project.emoji}</div>
             <div style={styles.projectContent}>
               <h3 style={styles.projectTitle}>{project.title}</h3>
-              <p style={styles.projectDescription}>{project.description}</p>
-              <span style={styles.projectCategory}>{project.category}</span>
+              <p style={styles.projectDescription}>
+                {project.description}
+              </p>
+              <span style={styles.projectCategory}>
+                {project.category}
+              </span>
             </div>
           </div>
         ))}
@@ -106,13 +119,13 @@ function Projects() {
 
 const styles = {
   container: {
-    
     background: "linear-gradient(135deg, #f0f4f8, #d9e2ec)",
     padding: "4rem 2rem",
     borderRadius: "16px",
-    maxWidth: "1000px",
+    maxWidth: "1100px",
     margin: "4rem auto",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    scrollMarginTop: "80px",
   },
   header: {
     textAlign: "center",
@@ -140,7 +153,7 @@ const styles = {
     flexWrap: "wrap",
   },
   filterButton: {
-    padding: "0.5rem 1.2rem",
+    padding: "0.55rem 1.3rem",
     borderRadius: "20px",
     border: "none",
     cursor: "pointer",
@@ -150,13 +163,13 @@ const styles = {
   },
   list: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-    gap: "1.5rem",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "1.6rem",
   },
   item: {
     backgroundColor: "#fff",
-    borderRadius: "12px",
-    padding: "1.5rem",
+    borderRadius: "14px",
+    padding: "1.6rem",
     display: "flex",
     alignItems: "flex-start",
     gap: "1rem",
@@ -165,14 +178,13 @@ const styles = {
   },
   emoji: {
     fontSize: "2rem",
-    marginTop: "0.3rem",
   },
   projectContent: {
     display: "flex",
     flexDirection: "column",
   },
   projectTitle: {
-    fontSize: "1.25rem",
+    fontSize: "1.3rem",
     fontWeight: 700,
     marginBottom: "0.5rem",
     color: "#1565c0",
@@ -185,7 +197,7 @@ const styles = {
   projectCategory: {
     backgroundColor: "#e3f2fd",
     color: "#1976d2",
-    padding: "0.3rem 0.8rem",
+    padding: "0.35rem 0.9rem",
     borderRadius: "12px",
     fontSize: "0.85rem",
     fontWeight: 600,

@@ -1,22 +1,60 @@
-body {
-  font-family: Arial, sans-serif;
+/* ===== GLOBAL RESET ===== */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
 nav {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+  align-items: center;      /* vertically center items */
+  padding: 1rem 2rem;
   background-color: transparent;
   color: rgb(104, 24, 24);
 }
+
+/* LOGO LEFT */
+nav .logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  gap: 0.5rem;              /* logo image aur text ke beech gap */
+}
+
+/* Logo image size */
+nav .logo-img {
+  height: 50px;
+  width: auto;
+}
+
+/* MENU RIGHT */
 nav ul {
   display: flex;
   list-style: none;
+  margin-left: auto;         /* 🔥 pushes menu to the right */
 }
+
+/* MENU ITEMS */
 nav ul li {
-  margin-left: 1rem;
+  margin-left: 2rem;         /* spacing between menu items */
+  cursor: pointer;
+  transition: color 0.3s;
 }
+
+nav ul li:hover {
+  color: rgb(200, 50, 50);   /* hover effect */
+}
+
+/* ===== SECTIONS ===== */
 section {
-  padding: 2rem;
+  width: 100%;
+  padding: 2rem 1.5rem;
 }
