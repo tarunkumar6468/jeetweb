@@ -5,10 +5,10 @@ function Footer() {
     <footer
       style={{
         textAlign: "center",
-        padding: "clamp(12px, 2.5vw, 20px) clamp(10px, 3vw, 30px)", // Responsive padding for all devices
+        padding: "clamp(12px, 2.5vw, 20px) clamp(10px, 3vw, 30px)",
         background: "linear-gradient(to right, rgb(108, 159, 173), rgba(37, 38, 40, 0.17))",
         color: "#fff",
-        marginTop: "clamp(30px, 5vw, 60px)", // Responsive margin
+        marginTop: "clamp(30px, 5vw, 60px)",
         cursor: "pointer",
         transition: "all 0.3s ease",
         width: "100%",
@@ -17,7 +17,7 @@ function Footer() {
         position: "relative",
         left: 0,
         right: 0,
-        minHeight: "clamp(60px, 10vw, 80px)", // Responsive minimum height
+        minHeight: "clamp(60px, 10vw, 80px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -31,24 +31,21 @@ function Footer() {
         e.currentTarget.style.boxShadow = "none";
       }}
     >
-<<<<<<< HEAD
-      <p style={{ margin: 0 }}>
-        &copy; {new Date().getFullYear()} Jeetlinkinfrastructure Ptivate Limited. All rights reserved.
-=======
-      <p style={{ 
-        margin: 0,
-        fontSize: "clamp(12px, 2vw, 18px)", // Better responsive font scaling
-        lineHeight: "1.5",
-        fontWeight: "400",
-        wordWrap: "break-word",
-        wordBreak: "break-word",
-        maxWidth: "1200px", // Prevents text from stretching too wide on large screens
-        width: "100%",
-        padding: "0",
-        letterSpacing: "0.5px",
-      }}>
-        &copy; {new Date().getFullYear()} Jeetlinkinfrastructure Private Limited. All rights reserved.
->>>>>>> 351a796 (k)
+      <p
+        style={{
+          margin: 0,
+          fontSize: "clamp(12px, 2vw, 18px)",
+          lineHeight: "1.5",
+          fontWeight: "400",
+          wordWrap: "break-word",
+          wordBreak: "break-word",
+          maxWidth: "1200px",
+          width: "100%",
+          padding: "0",
+          letterSpacing: "0.5px",
+        }}
+      >
+        &copy; {new Date().getFullYear()} Jeetlink Infrastructure Private Limited. All rights reserved.
       </p>
     </footer>
   );
