@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
 
 const SKILLS = [
@@ -26,6 +27,9 @@ const VALUES = [
     desc: "Infrastructure that outlives deadlines. Our designs integrate sustainability so the structures we build serve communities for generations.",
   },
 ];
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> 0d24f5b (update code on 01/28/2026)
 
 function About() {
   const [animated, setAnimated] = useState(false);
@@ -46,7 +50,23 @@ function About() {
     return () => observer.disconnect();
   }, []);
 
+  // Safe animation injection
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes slideUnderline {
+        0% { transform: translateX(-50%) scaleX(0.6); opacity: 0.6; }
+        50% { transform: translateX(-50%) scaleX(1); opacity: 1; }
+        100% { transform: translateX(-50%) scaleX(0.8); opacity: 0.8; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => document.head.removeChild(style);
+  }, []);
+
   return (
+<<<<<<< HEAD
     <section id="about" style={s.section} ref={ref}>
       {/* Diagonal accent */}
       <div style={s.diagonalBg} aria-hidden="true" />
@@ -98,8 +118,35 @@ function About() {
               sustainability. Because when you build something that connects people, it deserves
               to be built right.
             </p>
+=======
+    <section id="about" style={styles.about}>
+      {/* Header */}
+      <div style={styles.headerWrapper}>
+        <h2 style={styles.heading}>
+          Building The Future
+          <span style={styles.underline} />
+        </h2>
+        <p style={styles.subheading}>My Journey in Civil Engineering</p>
+      </div>
+
+      {/* Content */}
+      <div style={styles.content}>
+        {paragraphs.map((text, index) => (
+          <div
+            key={index}
+            style={{
+              ...styles.paragraphWrapper,
+              transform:
+                hoveredParagraph === index ? "scale(1.02)" : "scale(1)",
+            }}
+            onMouseEnter={() => setHoveredParagraph(index)}
+            onMouseLeave={() => setHoveredParagraph(null)}
+          >
+            <p style={styles.paragraph}>{text}</p>
+>>>>>>> 0d24f5b (update code on 01/28/2026)
           </div>
 
+<<<<<<< HEAD
           <div style={s.storyRight}>
             {VALUES.map((v, i) => (
               <div
@@ -168,6 +215,26 @@ function About() {
           <span style={s.toolLabel}>Tools We Use:</span>
           {["Civil 3D", "MX Road", "MIDAS", "AutoCAD", "DGPS", "Drone Mapping", "LiDAR", "Total Station"].map((t, i) => (
             <span key={i} style={s.toolBadge}>{t}</span>
+=======
+      {/* Skills */}
+      <div style={styles.skillsSection}>
+        <h3 style={styles.skillsHeading}>My Engineering Toolkit</h3>
+        <div style={styles.skillsGrid}>
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              style={{
+                ...styles.skillItem,
+                transform:
+                  hoveredSkill === index ? "scale(1.05)" : "scale(1)",
+              }}
+              onMouseEnter={() => setHoveredSkill(index)}
+              onMouseLeave={() => setHoveredSkill(null)}
+            >
+              <span style={styles.skillIcon}>{skill.icon}</span>
+              <span style={styles.skillName}>{skill.name}</span>
+            </div>
+>>>>>>> 0d24f5b (update code on 01/28/2026)
           ))}
         </div>
 
@@ -186,16 +253,27 @@ function About() {
         </div>
       </div>
 
+<<<<<<< HEAD
       <style>{`
         #about strong { color: #1a4d2e; }
         @media (max-width: 700px) {
           #about .story-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
+=======
+      {/* Quote */}
+      <div style={styles.quoteContainer}>
+        <p style={styles.quote}>
+          “We shape our buildings; thereafter they shape us.”
+          <span style={styles.quoteAuthor}>— Winston Churchill</span>
+        </p>
+      </div>
+>>>>>>> 0d24f5b (update code on 01/28/2026)
     </section>
   );
 }
 
+<<<<<<< HEAD
 const s = {
   section: {
     position: "relative",
@@ -234,6 +312,23 @@ const s = {
   eyebrow: {
     fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.14em",
     textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: "12px",
+=======
+const styles = {
+  about: {
+    width: "100%",
+    minHeight: "100vh",
+    padding: "4rem 2rem",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#f9f9f9",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    scrollMarginTop: "80px", // 🔥 FIX for navbar overlap
+  },
+  headerWrapper: {
+    textAlign: "center",
+    marginBottom: "3rem",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   heading: {
     fontFamily: "'Playfair Display', serif",
@@ -241,8 +336,21 @@ const s = {
     fontWeight: 700, color: "#fff",
     lineHeight: 1.22, marginBottom: "20px",
   },
+<<<<<<< HEAD
   headingAccent: {
     color: "#c9a84c",
+=======
+  underline: {
+    position: "absolute",
+    bottom: "-6px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "90px",
+    height: "4px",
+    borderRadius: "2px",
+    background: "linear-gradient(90deg, #4a90e2, #1976d2)",
+    animation: "slideUnderline 1.5s infinite",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   divider: {
     width: "60px", height: "4px",
@@ -259,8 +367,18 @@ const s = {
     padding: "40px",
     boxShadow: "0 8px 40px rgba(10,40,22,0.12)",
   },
+<<<<<<< HEAD
   storyLeft: {
     display: "flex", flexDirection: "column", gap: "18px",
+=======
+  paragraphWrapper: {
+    marginBottom: "1.8rem",
+    padding: "1.2rem",
+    borderRadius: "10px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+    transition: "transform 0.3s ease",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   storyPara: {
     fontSize: "0.97rem", color: "#2d4a38",
@@ -307,6 +425,7 @@ const s = {
     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
     gap: "20px",
   },
+<<<<<<< HEAD
   skillCard: {
     background: "rgba(255,255,255,0.06)",
     borderRadius: "10px", padding: "16px 20px",
@@ -315,6 +434,21 @@ const s = {
   skillTop: {
     display: "flex", alignItems: "center",
     gap: "10px", marginBottom: "10px",
+=======
+  skillItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.8rem",
+    padding: "0.9rem 1.1rem",
+    borderRadius: "8px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    transition: "transform 0.3s ease",
+    cursor: "pointer",
+  },
+  skillIcon: {
+    fontSize: "1.4rem",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   skillIcon: { fontSize: "1.2rem" },
   skillName: { flex: 1, fontSize: "0.9rem", fontWeight: 500, color: "#d4f0e0" },
@@ -323,6 +457,7 @@ const s = {
     height: "6px", background: "rgba(255,255,255,0.1)",
     borderRadius: "3px", overflow: "hidden",
   },
+<<<<<<< HEAD
   trackFill: {
     height: "100%",
     background: "linear-gradient(90deg, #2d7a4f, #c9a84c)",
@@ -351,6 +486,13 @@ const s = {
     background: "#fff", border: "1px solid #c8e6d4",
     borderLeft: "5px solid #c9a84c",
     borderRadius: "14px", padding: "32px 40px",
+=======
+  quoteContainer: {
+    width: "80%",
+    padding: "2rem",
+    background: "linear-gradient(135deg, #4a90e2, #1976d2)",
+    borderRadius: "10px",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
     textAlign: "center",
     boxShadow: "0 4px 20px rgba(29,100,60,0.07)",
   },
@@ -371,4 +513,8 @@ const s = {
   },
 };
 
+<<<<<<< HEAD
 export default About;
+=======
+export default About;
+>>>>>>> 0d24f5b (update code on 01/28/2026)

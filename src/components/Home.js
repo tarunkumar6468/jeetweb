@@ -38,11 +38,30 @@ function Home() {
         {/* Divider */}
         <div className="section-divider fade-up delay-2" style={{ margin: "1.4rem auto" }} />
 
+<<<<<<< HEAD
         {/* Sub */}
         <p style={s.sub} className="fade-up delay-2">
           A forward-thinking consulting firm specializing in Highway Engineering,
           Bridge & Structural Design, Traffic Planning, and Infrastructure Consultancy —
           delivering innovative, data-driven solutions across India.
+=======
+        <p style={styles.description}>
+          {description.split(" ").map((word, index) => (
+            <span
+              key={index}
+              onMouseEnter={() => setHoveredWord(index)}
+              onMouseLeave={() => setHoveredWord(null)}
+              style={{
+                ...styles.word,
+                color: hoveredWord === index ? "#000" : "#444",
+                textDecoration:
+                  hoveredWord === index ? "underline" : "none",
+              }}
+            >
+              {word}&nbsp;
+            </span>
+          ))}
+>>>>>>> 0d24f5b (update code on 01/28/2026)
         </p>
 
         {/* CTAs */}
@@ -105,10 +124,18 @@ function Home() {
   );
 }
 
+<<<<<<< HEAD
 const s = {
   section: {
     position: "relative",
     minHeight: "100vh",
+=======
+const styles = {
+  home: {
+    width: "100%",
+    minHeight: "100vh",
+    backgroundColor: "#ffffff",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -117,6 +144,7 @@ const s = {
     background: "linear-gradient(160deg, #f4f7fc 0%, #deeafc 50%, #f4f7fc 100%)",
     fontFamily: "'DM Sans', sans-serif",
   },
+<<<<<<< HEAD
   gridBg: {
     position: "absolute",
     inset: 0,
@@ -172,6 +200,17 @@ const s = {
     lineHeight: 1.15,
     color: "#0a1628",
     marginBottom: "0.2rem",
+=======
+  wrapper: {
+    maxWidth: "900px",
+    padding: "2rem",
+  },
+  heading: {
+    fontSize: "3rem",
+    fontWeight: 800,
+    marginBottom: "1rem",
+    color: "#000",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   headingAccent: {
     background: "linear-gradient(90deg, #2563c8, #1a3a6e)",
@@ -179,12 +218,20 @@ const s = {
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
   },
+<<<<<<< HEAD
   sub: {
     fontSize: "clamp(0.98rem, 2.2vw, 1.12rem)",
     color: "#3a5070",
     lineHeight: 1.78,
     maxWidth: "600px",
     margin: "0 auto 2rem",
+=======
+  subheading: {
+    fontSize: "1.5rem",
+    fontWeight: 500,
+    marginBottom: "2rem",
+    color: "#333",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   ctaRow: {
     display: "flex",
@@ -204,7 +251,11 @@ const s = {
     boxShadow: "0 6px 20px rgba(37,99,200,0.4)",
     transition: "opacity 0.25s, transform 0.25s",
     cursor: "pointer",
+<<<<<<< HEAD
     border: "none",
+=======
+    transition: "color 0.2s ease, text-decoration 0.2s ease",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   btnSecondary: {
     padding: "14px 32px",

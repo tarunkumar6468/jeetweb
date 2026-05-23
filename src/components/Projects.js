@@ -62,6 +62,7 @@ function Projects() {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
 
+<<<<<<< HEAD
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setVisible(true); },
@@ -80,6 +81,65 @@ function Projects() {
       <div style={s.glowLeft}  aria-hidden="true" />
       <div style={s.glowRight} aria-hidden="true" />
       <div style={s.gridOverlay} aria-hidden="true" />
+=======
+  const projects = [
+    {
+      title: "Smart Suspension Bridge Design",
+      description:
+        "Advanced modeling and simulation for enhanced structural integrity and safety.",
+      emoji: "🌉",
+      category: "Bridges",
+    },
+    {
+      title: "Highway Expansion & Development",
+      description:
+        "Planning and execution of multi-lane highway systems with sustainable materials.",
+      emoji: "🛣️",
+      category: "Roads",
+    },
+    {
+      title: "Green Building Construction",
+      description:
+        "Implementation of eco-friendly materials and energy-efficient architectural designs.",
+      emoji: "🏢",
+      category: "Buildings",
+    },
+    {
+      title: "Flood Control & Drainage System",
+      description:
+        "Designing efficient water management systems to prevent urban flooding.",
+      emoji: "🌊",
+      category: "Hydraulic",
+    },
+    {
+      title: "Urban Infrastructure Renovation",
+      description:
+        "Revamping old city infrastructure to meet modern safety and usability standards.",
+      emoji: "🚧",
+      category: "Urban",
+    },
+  ];
+
+  const categories = ["All", ...new Set(projects.map((p) => p.category))];
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
+
+  // 🔥 FIXED: no empty state, no delete feeling
+  useEffect(() => {
+    setVisibleItems(filteredProjects);
+  }, [filteredProjects]);
+
+  return (
+    <section id="projects" style={styles.container}>
+      <div style={styles.header}>
+        <h2 style={styles.heading}>Highlighted Civil Engineering Projects</h2>
+        <p style={styles.subheading}>
+          Showcasing innovative solutions that shape our infrastructure
+        </p>
+>>>>>>> 0d24f5b (update code on 01/28/2026)
 
       <div style={s.inner}>
         {/* Header — fade up */}
@@ -114,15 +174,28 @@ function Projects() {
         >
           {categories.map((cat) => (
             <button
+<<<<<<< HEAD
               key={cat}
               onClick={() => setFilter(cat)}
               style={{ ...s.pill, ...(filter === cat ? s.pillActive : {}) }}
+=======
+              key={category}
+              style={{
+                ...styles.filterButton,
+                backgroundColor:
+                  activeFilter === category ? "#1976d2" : "#e3f2fd",
+                color:
+                  activeFilter === category ? "#fff" : "#1565c0",
+              }}
+              onClick={() => setActiveFilter(category)}
+>>>>>>> 0d24f5b (update code on 01/28/2026)
             >
               {cat}
             </button>
           ))}
         </div>
 
+<<<<<<< HEAD
         {/* Cards — staggered */}
         <div style={s.grid}>
           {filtered.map((p, i) => (
@@ -164,6 +237,35 @@ function Projects() {
                   transition: "transform 0.3s ease",
                 }}>→</span>
               </div>
+=======
+      <div style={styles.list}>
+        {visibleItems.map((project, index) => (
+          <div
+            key={index}
+            style={{
+              ...styles.item,
+              transform:
+                hoveredItem === index
+                  ? "translateY(-6px)"
+                  : "translateY(0)",
+              boxShadow:
+                hoveredItem === index
+                  ? "0 12px 25px rgba(21,101,192,0.25)"
+                  : "0 3px 12px rgba(21,101,192,0.15)",
+            }}
+            onMouseEnter={() => setHoveredItem(index)}
+            onMouseLeave={() => setHoveredItem(null)}
+          >
+            <div style={styles.emoji}>{project.emoji}</div>
+            <div style={styles.projectContent}>
+              <h3 style={styles.projectTitle}>{project.title}</h3>
+              <p style={styles.projectDescription}>
+                {project.description}
+              </p>
+              <span style={styles.projectCategory}>
+                {project.category}
+              </span>
+>>>>>>> 0d24f5b (update code on 01/28/2026)
             </div>
           ))}
         </div>
@@ -207,6 +309,7 @@ function Projects() {
   );
 }
 
+<<<<<<< HEAD
 const s = {
   section: {
     position: "relative",
@@ -214,6 +317,17 @@ const s = {
     padding: "90px 0 80px",
     fontFamily: "'DM Sans', sans-serif",
     background: "linear-gradient(180deg, #f0faf4 0%, #e2f5ea 40%, #f4faf6 100%)",
+=======
+const styles = {
+  container: {
+    background: "linear-gradient(135deg, #f0f4f8, #d9e2ec)",
+    padding: "4rem 2rem",
+    borderRadius: "16px",
+    maxWidth: "1100px",
+    margin: "4rem auto",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    scrollMarginTop: "80px",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   glowLeft: {
     position: "absolute",
@@ -270,9 +384,20 @@ const s = {
     background: "linear-gradient(90deg, #2d7a4f, #c9a84c)",
     borderRadius: "2px", margin: "0 auto 18px",
   },
+<<<<<<< HEAD
   sub: {
     fontSize: "1rem", color: "#2d4a38",
     maxWidth: "540px", margin: "0 auto", lineHeight: 1.75,
+=======
+  filterButton: {
+    padding: "0.55rem 1.3rem",
+    borderRadius: "20px",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: 600,
+    fontSize: "0.9rem",
+    transition: "all 0.3s ease",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   filterRow: {
     display: "flex", justifyContent: "center",
@@ -294,6 +419,7 @@ const s = {
   },
   grid: {
     display: "grid",
+<<<<<<< HEAD
     gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
     gap: "22px", marginBottom: "48px",
   },
@@ -301,12 +427,30 @@ const s = {
     background: "rgba(255,255,255,0.93)",
     border: "1px solid rgba(45,122,79,0.14)",
     borderRadius: "18px", padding: "28px 26px 22px",
+=======
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "1.6rem",
+  },
+  item: {
+    backgroundColor: "#fff",
+    borderRadius: "14px",
+    padding: "1.6rem",
+    display: "flex",
+    alignItems: "flex-start",
+    gap: "1rem",
+    transition: "all 0.3s ease",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
     cursor: "pointer",
     backdropFilter: "blur(8px)",
   },
+<<<<<<< HEAD
   cardTop: {
     display: "flex", justifyContent: "space-between",
     alignItems: "flex-start", marginBottom: "16px",
+=======
+  emoji: {
+    fontSize: "2rem",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   emojiWrap: {
     width: "52px", height: "52px",
@@ -361,16 +505,25 @@ const s = {
     gap: "24px",
     boxShadow: "0 12px 40px rgba(10,40,22,0.25)",
   },
+<<<<<<< HEAD
   ctaLeft: { flex: 1, minWidth: "240px" },
   ctaHeading: {
     fontFamily: "'Playfair Display', serif",
     fontSize: "1.5rem", fontWeight: 700,
     color: "#fff", marginBottom: "8px",
+=======
+  projectTitle: {
+    fontSize: "1.3rem",
+    fontWeight: 700,
+    marginBottom: "0.5rem",
+    color: "#1565c0",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   ctaText: {
     fontSize: "0.93rem", color: "#7ecfa0",
     lineHeight: 1.65, fontStyle: "italic",
   },
+<<<<<<< HEAD
   ctaRight: {
     display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center",
   },
@@ -391,6 +544,16 @@ const s = {
     fontWeight: 600, fontSize: "0.9rem",
     transition: "border-color 0.25s",
     whiteSpace: "nowrap",
+=======
+  projectCategory: {
+    backgroundColor: "#e3f2fd",
+    color: "#1976d2",
+    padding: "0.35rem 0.9rem",
+    borderRadius: "12px",
+    fontSize: "0.85rem",
+    fontWeight: 600,
+    width: "fit-content",
+>>>>>>> 0d24f5b (update code on 01/28/2026)
   },
 };
 
