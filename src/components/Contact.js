@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
 import { FaWhatsapp, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaGlobe } from "react-icons/fa";
 
@@ -46,16 +45,6 @@ const SOCIALS = [
     bg: "#e6f3fb",
   },
 ];
-=======
-import React from "react";
-import {
-  FaWhatsapp,
-  FaInstagram,
-  FaLinkedin,
-  FaEnvelope,
-  FaPhone,
-} from "react-icons/fa";
->>>>>>> 0d24f5b (update code on 01/28/2026)
 
 function Contact() {
   const [hovered, setHovered] = useState(null);
@@ -72,7 +61,6 @@ function Contact() {
   }, []);
 
   return (
-<<<<<<< HEAD
     <section id="contact" style={s.section} ref={ref}>
 
       {/* Background grid — same as Home */}
@@ -249,55 +237,6 @@ function Contact() {
             </a>
           </div>
         </div>
-=======
-    <section id="contact" style={styles.section}>
-      <h2 style={styles.heading}>Contact Us</h2>
-
-      <p>
-        <FaEnvelope />{" "}
-        <a
-          href="mailto:Jeetlinkinfrastructure@gmail.com"
-          style={styles.link}
-        >
-          Jeetlinkinfrastructure@gmail.com
-        </a>
-      </p>
-
-      <p>
-        <FaPhone />{" "}
-        <a href="tel:+919201945430" style={styles.link}>
-          +91 92019 45430
-        </a>
-      </p>
-
-      <div style={styles.iconContainer}>
-        <a
-          href="https://wa.me/919201945430"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-        >
-          <FaWhatsapp size={30} color="#25D366" />
-        </a>
-
-        <a
-          href="https://instagram.com/jeetlinkinfrastructure"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-        >
-          <FaInstagram size={30} color="#E4405F" />
-        </a>
-
-        <a
-          href="https://linkedin.com/company/jeetlinkinfrastructure"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <FaLinkedin size={30} color="#0077B5" />
-        </a>
->>>>>>> 0d24f5b (update code on 01/28/2026)
       </div>
 
       <style>{`
@@ -312,7 +251,6 @@ function Contact() {
 
 const s = {
   section: {
-<<<<<<< HEAD
     position: "relative",
     overflow: "hidden",
     padding: "90px 0 80px",
@@ -363,10 +301,6 @@ const s = {
   eyebrow: {
     fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.12em",
     textTransform: "uppercase", color: "#2d7a4f", marginBottom: "10px",
-=======
-    textAlign: "center",
-    padding: "40px 20px",
->>>>>>> 0d24f5b (update code on 01/28/2026)
   },
   heading: {
     fontFamily: "'Playfair Display', serif",
@@ -470,11 +404,6 @@ const s = {
     border: "2px solid rgba(255,255,255,0.25)",
     color: "#fff", borderRadius: "10px",
     fontWeight: 600, fontSize: "0.92rem",
-  },
-  link: {
-    color: "#d9dbddff",
-    textDecoration: "none",
-    fontWeight: "500",
   },
 };
 

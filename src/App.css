@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
@@ -78,67 +77,6 @@ nav ul li {
 nav ul li:hover {
   background: var(--blue-100);
   color: var(--blue-600);
-=======
-/* ===== GLOBAL RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-}
-
-/* ===== NAVBAR ===== */
-nav {
-  width: 100%;
-  display: flex;
-  align-items: center;      /* vertically center items */
-  padding: 1rem 2rem;
-  background-color: transparent;
-  color: rgb(104, 24, 24);
-}
-
-/* LOGO LEFT */
-nav .logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  gap: 0.5rem;              /* logo image aur text ke beech gap */
-}
-
-/* Logo image size */
-nav .logo-img {
-  height: 50px;
-  width: auto;
-}
-
-/* MENU RIGHT */
-nav ul {
-  display: flex;
-  list-style: none;
-  margin-left: auto;         /* 🔥 pushes menu to the right */
-}
-
-/* MENU ITEMS */
-nav ul li {
-  margin-left: 2rem;         /* spacing between menu items */
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-nav ul li:hover {
-  color: rgb(200, 50, 50);   /* hover effect */
-}
-
-/* ===== SECTIONS ===== */
-section {
-  width: 100%;
-  padding: 2rem 1.5rem;
->>>>>>> 0d24f5b (update code on 01/28/2026)
 }
 
 @media (max-width: 768px) {
