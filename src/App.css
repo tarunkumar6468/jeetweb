@@ -1,22 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --blue-900: #0a1628;
+  --blue-800: #0d2045;
+  --blue-700: #1a3a6e;
+  --blue-600: #1e4d9b;
+  --blue-500: #2563c8;
+  --blue-400: #4a86e8;
+  --blue-300: #93b8f5;
+  --blue-100: #deeafc;
+  --gold:     #c9a84c;
+  --white:    #ffffff;
+  --off-white:#f4f7fc;
+  --text-dark:#0d1b2e;
+  --text-mid: #3a5070;
+  --text-light:#7a92b0;
+  --shadow-sm: 0 2px 8px rgba(10,22,40,0.08);
+  --shadow-md: 0 6px 24px rgba(10,22,40,0.13);
+  --shadow-lg: 0 16px 48px rgba(10,22,40,0.18);
+  --radius:   12px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: transparent;
-  color: rgb(104, 24, 24);
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+a { text-decoration: none; color: inherit; }
+
+/* ── Scroll bar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--blue-400); border-radius: 3px; }
+
+/* ── Section divider ── */
+.section-divider {
+  width: 60px; height: 4px;
+  background: linear-gradient(90deg, var(--blue-500), var(--gold));
+  border-radius: 2px;
+  margin: 0.6rem auto 0;
 }
-nav ul {
-  display: flex;
-  list-style: none;
+
+/* ── Fade-in utility ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.fade-up { animation: fadeUp 0.7s var(--transition) both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* ── Nav global ── */
+nav ul { display: flex; list-style: none; }
 nav ul li {
-  margin-left: 1rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--blue-800);
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background var(--transition), color var(--transition);
 }
-section {
-  padding: 2rem;
+nav ul li:hover {
+  background: var(--blue-100);
+  color: var(--blue-600);
+}
+
+@media (max-width: 768px) {
+  nav ul { flex-direction: column; }
 }
